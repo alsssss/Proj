@@ -34,7 +34,15 @@ export default class Form extends React.Component {
         this.props.hide()
         if(this.props.upd) {
             Services.updateProduct(this.props.product._id, this.state)
-        }else{Services.createProduct(this.state)}
+                .then(() =>{
+                    window.location.reload();
+                })
+                .catch(e => console.log(e))
+        }else{Services.createProduct(this.state)
+            .then(() =>{
+                window.location.reload();
+            })
+            .catch(e => console.log(e))}
     }
 
 
@@ -56,15 +64,13 @@ export default class Form extends React.Component {
                     <div>
                         <label htmlFor='ingredients'> Ingredienti: </label>
                         <br/>
-                        <input  placeholder="Ingredienti" type="text" required
-                                onChange={this.handleChange} value={this.state.ingredients} name="ingredients"/>
+                        <textarea  placeholder="Ingredienti"  required onChange={this.handleChange}  id="ingredients" name='ingredients'>{this.state.ingredients}</textarea>
                     </div>
                     <br/>
                     <div>
                         <label htmlFor='description'>Descrizione: </label>
                         <br/>
-                        <input placeholder="Descrizione" type="text" required
-                               onChange={this.handleChange} value={this.state.desc} name="desc"/>
+                        <textarea placeholder="Descrizione"  required onChange={this.handleChange} id='desc' name="desc" maxlength='30'>{this.state.desc}</textarea>
                     </div>
                     <br/>
                     <div>

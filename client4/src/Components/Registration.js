@@ -1,6 +1,6 @@
 import React from 'react';
 import Authorize from '../Services/services'
-
+import style from '../Styles/registration.module.css'
 
 class Registration extends React.Component {
     constructor(props) {
@@ -25,7 +25,7 @@ class Registration extends React.Component {
             username: this.state.username,
             email: this.state.email,
             password: this.state.password,
-            isAdmin: true,
+            isAdmin: false,
             isChef: false
         };
         Authorize.registerUser(user)
@@ -40,36 +40,42 @@ class Registration extends React.Component {
     render() {
         return (
             <>
-                <hgroup>
-                    <h1>Benvenuto sul nostro sito</h1>
-                    <h2>Registrati</h2>
-                </hgroup>
+             <p className={style.logo}/>
+            
+            <div className={style.container}>
+               <h1 className={style.title}>Registrati subito ed effettua il tuo primo ordine !</h1>
+                
                 <form onSubmit={this.handleRegister}>
-                    <div >
-                        <label htmlFor='username'>Username: </label>
-                        <br/>
-                        <input  placeholder="Username" type="text" required
+                    <div className={style.name} >
+                        <label htmlFor='username'>Username </label><br/>
+                        
+                        <input className={style.nIn} placeholder="Username" type="text" required
                                 onChange={this.handleChange} value={this.state.username} name="username"/>
                     </div>
-                    <br/>
+                   
                     <div>
-                        <label htmlFor='email'>Email: </label>
-                        <br/>
-                        <input  placeholder="Email" type="text" required
+                        <label className={style.email}htmlFor='email'>Email </label><br/>
+                        
+                        <input className={style.eIn}  placeholder="Email" type="text" required
                                 onChange={this.handleChange} value={this.state.email} name="email"/>
                     </div>
-                    <br/>
+                    
                     <div>
-                        <label htmlFor='password'>Password: </label>
+                        <label className={style.password} htmlFor='password'>Password: </label>
                         <br/>
-                        <input placeholder="Password" type="password" required
+                        <input className={style.pIn} placeholder="Password" type="password" required
                                onChange={this.handleChange} value={this.state.password} name="password"/>
                     </div>
-                    <br/>
+                    
                     <div>
-                        <input type="submit" value="Submit" />
+                        <input className={style.submit} type="submit" value="Registrati" /><br/>
+                        <a href="/" onClick={this.handleReturn}>Torna al login</a>
                     </div>
                 </form>
+
+                
+           
+            </div>
             </>
         );
     }

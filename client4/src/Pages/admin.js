@@ -5,6 +5,7 @@ import ProductList from "../Components/ProductList";
 import Form from '../Components/Form'
 
 
+
 const user=sessionStorage.getItem('utente');
 
 export default class Admin extends React.Component{
@@ -20,7 +21,8 @@ export default class Admin extends React.Component{
 
         this.handleCheck=this.handleCheck.bind(this)
         this.handleOther=this.handleOther.bind(this)
-        this.handleHide=this.handleHide.bind(this)
+        this.handleHide1=this.handleHide1.bind(this)
+        this.handleHide2=this.handleHide2.bind(this)
         this.handleClick=this.handleClick.bind(this)
     }
 
@@ -45,7 +47,7 @@ export default class Admin extends React.Component{
         if(prod.source.innerHTML==='Aggiorna'){
             this.setState({
                 showUpdate:true,
-                formUpdate: <Form product={prod} hide={this.handleHide} upd={true}/>
+                formUpdate: <Form product={prod} hide={this.handleHide1} upd={true}/>
             })
         }else{
             prod.source.parentNode.parentNode.remove()
@@ -53,15 +55,22 @@ export default class Admin extends React.Component{
         }
         }
 
-        handleHide(){
+        handleHide1(){
         this.setState({
             showUpdate:false,
-            showCreate:false
+
         })
         }
 
+    handleHide2(){
+        this.setState({
+            showCreate:false,
 
-        handleClick(){
+        })
+    }
+
+
+    handleClick(){
         const prod={
             title:'',
             ingredients:'',
@@ -72,7 +81,7 @@ export default class Admin extends React.Component{
         }
         this.setState({
             showCreate:true,
-            formCreate:<Form product={prod} hide={this.handleHide} upd={false}/>
+            formCreate:<Form product={prod} hide={this.handleHide2} upd={false}/>
         })
 
         }

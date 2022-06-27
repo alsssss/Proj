@@ -1,6 +1,7 @@
 import React from 'react'
 import Services from '../Services/services'
 import Product from "./Product";
+import style from '../Styles/product.module.css'
 
 
 export default class ProductList extends React.Component {
@@ -37,13 +38,9 @@ export default class ProductList extends React.Component {
     render(){
         return(
             this.state.products.length > 0 ? (
-            <div>
-                <main>
-                    <ul>
-                        {this.state.products}
-                    </ul>
-                </main>
-            </div>
+            <div className={style.prodList}>
+                {this.state.products}
+                   </div>
             ) : <p>Non abbiamo prodotti</p>
         )
     }

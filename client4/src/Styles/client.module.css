@@ -1,0 +1,219 @@
+.cart{
+    position: absolute;
+    top:25px;
+    right:150px;
+    border-width: 0px;
+    background-color: red;
+    background-image: url("../Images/cart.png");
+    background-size: 50px;
+    width: 50px;
+    height: 50px;
+
+    -webkit-animation: fadein 2s; 
+    -moz-animation: fadein 2s;
+     -ms-animation: fadein 2s; 
+      -o-animation: fadein 2s; 
+         animation: fadein 2s
+}
+.cart:hover{
+cursor: pointer;
+}
+
+.cartitle{
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    font-size: 35px;
+    font-weight: bolder;
+}
+.recap{
+    position: relative;
+    top: 55px;
+    left: -88px;
+    font-size: medium;
+    font-weight: bold;
+}
+.noProd{
+    position: relative;
+    top: 20px;
+    right: -70px;
+}
+.total{
+    position: absolute;
+    right:30px;
+    top:16px;
+    font-size: 30px;
+    font-weight: bolder;
+
+}
+.agree{
+    position: relative;
+    top:58px;
+    right:-80px;
+    height: 50px;
+    width: 150px;
+    border-style: none;
+    border-radius: 50px;
+    font-size: medium;
+    font-weight: bolder;
+    background-color: rgb(91, 245, 91);
+    color: white;
+
+}
+.agree:hover{
+    cursor: pointer;
+}
+
+.cartSection{
+    position: fixed;
+    right: 0px;
+    max-height:100vw;
+    overflow-y: scroll;
+    width: 40vw;
+    background: rgb(255, 255, 255);
+    border-radius: 50px;
+   
+    -webkit-animation: fadein 2s; 
+    -moz-animation: fadein 2s;
+     -ms-animation: fadein 2s; 
+      -o-animation: fadein 2s; 
+         animation: fadein 2s
+}
+.cartList{
+    position: center;
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    overflow: visible;
+}
+.cartList li {
+    position: relative;
+    height:35px ;
+    overflow: hidden;
+    margin-top: 70px;
+}
+
+
+.counter{
+    position: absolute;
+    top:12px;
+    right:145px;
+    border-radius: 100%;
+    background-color: white;
+    font-size:medium;
+    font-weight: bold;
+    color: black;
+    width: 20px;
+    height: 20px;
+
+    -webkit-animation: fadein 2s; 
+    -moz-animation: fadein 2s;
+     -ms-animation: fadein 2s; 
+      -o-animation: fadein 2s; 
+         animation: fadein 2s
+}
+
+.orderStatus{
+    width: 40vw;
+    position: relative;
+    top:-360px;
+    right: -328px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 50px;
+
+    -webkit-animation: fadein 2s; 
+    -moz-animation: fadein 2s;
+     -ms-animation: fadein 2s; 
+      -o-animation: fadein 2s; 
+         animation: fadein 2s
+
+}
+.wait{
+   position: relative;
+   right: -70px;
+   top:8px
+}
+.main{
+    position: absolute;
+    top:120px;
+    left: 0px;
+    background-color: #ecf0f3 ;
+    width: 100vw;
+    height:1000px;
+    max-height: 100vh;
+    overflow-y: scroll;
+    border-radius: 50px;
+    overflow-x: visible;
+}
+#change{
+    position: absolute;
+    top:120px;
+    left: 0px;
+    background-color: #ecf0f3 ;
+    width: 60vw;
+    height: 100vh;
+    border-radius: 50px;
+}
+
+.order{
+    position: absolute;
+    top: 30px;
+    left: 630px;
+    width: 150px;
+    height: 50px;
+    font-weight: bold;
+    font-size: larger;
+    border-width: 0px;
+    background-color: red;
+    color:white;
+    border-radius: 30px;
+
+    -webkit-animation: fadein 2s; 
+    -moz-animation: fadein 2s;
+     -ms-animation: fadein 2s; 
+      -o-animation: fadein 2s; 
+         animation: fadein 2s
+
+}
+.order:hover{
+    background-color:  rgb(211, 133, 77);
+    cursor: pointer;
+}
+
+
+
+::-webkit-scrollbar{
+    display: none;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@-moz-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@-webkit-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+@-ms-keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}

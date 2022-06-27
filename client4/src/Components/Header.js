@@ -1,5 +1,6 @@
 import React from 'react'
 import Authorize from '../Services/services'
+import style from '../Styles/navbar.module.css'
 
 class Header extends React.Component{
         constructor(props){
@@ -26,15 +27,24 @@ class Header extends React.Component{
 
         render(){
                 return(
-                    <header>
-                            <ul>
-                            <li><img src='https://media.istockphoto.com/vectors/cartoon-burger-vector-isolated-illustration-vector-id1184633031?s=612x612' alt='Immagine di un humberger' title='immagine di un hamburger' width='50' height='50'/></li>
-                                    <li >{this.state.isAdmin ? <span>Hello Admin {this.state.agent}</span> :
-                                        this.state.isChef ? <span>Hello Chef {this.state.agent}</span> :
-                                            <span>Hello User {this.state.agent}</span>}</li>
-                                    <li><button onClick={this.handleClick}>Logout </button></li>
-                            </ul>
-                    </header>
+                        <div className={style.contenitore}>
+                        <ul className={style.navbar}>
+                            <li className={style.logo}/>
+                            <li className={style.client}>
+                                    {this.state.isAdmin ? <span>Bentornato, {this.state.agent} - Admin</span> :
+                                     this.state.isChef ? <span>Bentornato Chef {this.state.agent}</span> :
+                                     <span>Bentornato, {this.state.agent}</span>
+                                    }
+                            </li>
+                            <li>
+                            {this.state.isAdmin ? <button className={style.ordine} onClick={this.handleOrdini}>Ultimi ordini</button> : 
+                               this.state.isChef ? <button className={style.ordine} onClick={this.handleOrdini}>Ordini in arrivo</button> :
+                               <span />
+                               }
+                            </li>
+                            <li><button className={style.logout} onClick={this.handleClick}>Logout </button></li>
+                        </ul>
+                </div>
                 )
         }
 

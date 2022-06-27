@@ -1,5 +1,6 @@
 import React from 'react';
 import Authorize from '../Services/services'
+import style from '../Styles/login.module.css'
 
 class Login extends React.Component {
     constructor(props) {
@@ -72,37 +73,42 @@ class Login extends React.Component {
     render() {
         return (
             <>
-                <hgroup>
-                    <h1>Benvenuto sul nostro sito </h1>
-                    <h2>Loggati</h2>
-                </hgroup>
+                  <p className={style.logo} />
+            
+            <div className={style.container}>
+                
+            <h1 className={style.title}>Benvenuto, effettua l'accesso: </h1> 
                 <form onSubmit={this.handleLogin}>
                     <div >
-                        <label htmlFor='username'>Username: </label>
+                        <label className={style.name} htmlFor='username'>Username </label>
                         <br/>
-                        <input  placeholder="Username" type="text" required
+                        <input className={style.nIn} placeholder="Username" type="text" required
                                onChange={this.handleChange} value={this.state.username} name="username"/>
                     </div>
                     <br/>
                     <div>
-                        <label htmlFor='password'>Password: </label>
+                        <label className={style.password} htmlFor='password'>Password </label>
                         <br/>
-                        <input placeholder="Password" type="password" required
+                        <input className={style.pIn} placeholder="Password" type="password" required
                                onChange={this.handleChange} value={this.state.password} name="password"/>
                     </div>
                     <br/>
                     <div>
-                        <input type="submit" value="Submit" />
+                        <input className={style.submit} type="submit" value="Accedi" />
                     </div>
                     <br/>
+                    {(this.state.error) &&
+                     <p  className={style.error}>Utente o Password incorretti, riprova </p>}
+
                     <p>Se non sei ancora registrato: &nbsp;
                         <a href='/registration' onClick={this.onClick}>Clicca qui</a>
                     </p>
                     <br/>
-                    {(this.state.error) &&
-                        <footer>Utente o Password incorretti, riprova </footer>
-                    }
+                        
+                   
                 </form>
+
+            </div>
             </>
         );
     }

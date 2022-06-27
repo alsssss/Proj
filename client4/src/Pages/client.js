@@ -4,6 +4,7 @@ import ProductList from '../Components/ProductList';
 import Product from "../Components/Product";
 import Services from "../Services/services";
 import OrderBox from "../Components/OrderBox";
+import style from '../Styles/client.module.css'
 
 
 let arr=[];
@@ -54,14 +55,12 @@ export default class Client extends React.Component {
     handleGet(){
         Services.getOrder(JSON.parse(sessionStorage.getItem('utente')).details._id)
             .then(data => {
-                console.log(data)
                 if(data.length !== 0){
                     this.setState({
                         order:data[0],
                         alreadyOrder:true
                     })
-                }console.log(this.state.order)
-
+                }
             })
             .catch(e => console.log(e))
     }
@@ -70,19 +69,28 @@ export default class Client extends React.Component {
         counter1++
         const op = counter1 % 2;
         if (op === 1) {
-            this.setState({cartOpened: true})
+            if(this.state.orderOpened){this.handleClick2()}
+            this.setState({cartOpened: true});
+            document.getElementById("change").style.width="60vw";
+            
+        
         } else {
-            this.setState({cartOpened: false})
+            this.setState({cartOpened: false});
+            document.getElementById("change").style.width="100vw"
+        
         }
     }
-
+    //document.getElementById(id).style.property = new style
     handleClick2() {
         counter2++
         const op = counter2 % 2;
         if (op === 1) {
-            this.setState({orderOpened: true})
+            if(this.state.cartOpened){this.handleClick1()}
+            this.setState({orderOpened: true});
+                document.getElementById("change").style.width="60vw";
         } else {
-            this.setState({orderOpened: false})
+            this.setState({orderOpened: false});
+                document.getElementById("change").style.width="100vw";
         }
     }
 
@@ -133,45 +141,57 @@ export default class Client extends React.Component {
                 window.alert('Per qualche motivo non è stato possibile creare l\'ordine');
             }
 
-        }
+        } 
         arr=[];
         vett=[];
         sum=0;
         this.setState({prods:[]})
         this.setState({total:0})
         this.setState({alreadyOrder:true})
-        console.log(this.state.order)
     }
 
 
     render() {
         return (
             <div>
-                {sessionStorage.length === 0 ? <></> :
-                    <Header username={JSON.parse(sessionStorage.getItem('utente')).details.username}
-                            isAdmin={JSON.parse(sessionStorage.getItem('utente')).details.isAdmin}
-                            isChef={JSON.parse(sessionStorage.getItem('utente')).details.isChef}/>}
-                <ProductList onChange={this.handleOther} admin={false}/>
-                <aside>
-                    <button onClick={this.handleClick1}>Carrello</button>
-                    {this.state.cartOpened &&
-                        <div>
-                            <div>Carrello</div>
-                            {this.state.alreadyOrder ? <p>Al momento hai già un ordine in corso,aspetta</p> :
-                                <>
-                            <ul>
-                                {this.state.prods}
-                            </ul>
-                            <div>Prezzo totale: <span>{this.state.total}</span></div>
-                            <button onClick={this.handlePurchase}>Conferma Ordine</button>
-                                </>}
-                        </div>}
-                    <button onClick={this.handleClick2}>Visualizza ordine</button>
-                    {this.state.orderOpened &&
-                        <OrderBox order={this.state.order} user={JSON.parse(sessionStorage.getItem('utente')).details.username}/>}
-                </aside>
+             {sessionStorage.length === 0 ? <></>:
+                <Header username={JSON.parse(sessionStorage.getItem('utente')).details.username}
+                        isAdmin={JSON.parse(sessionStorage.getItem('utente')).details.isAdmin}
+                        isChef={JSON.parse(sessionStorage.getItem('utente')).details.isChef}/>}
+              <button className={style.cart} onClick={this.handleClick1}></button>
 
+              <p className={style.counter}>{this.state.prods.length}</p>
+              <button className={style.order} onClick={this.handleClick2}>Il mio ordine</button>
+
+               <div id="change" className={style.main}>
+                  {this.state.cartOpened &&
+                   <div className={style.cartSection}>
+                      <span className={style.cartitle}>Carrello</span>
+                      {this.state.alreadyOrder ? <p className={style.wait}>Hai già un ordine in corso,attendi</p>:
+                         <>
+                            {this.state.prods.length > 0 ?<>
+                            <span className={style.recap}>Riepilogo</span>
+                            <div className={style.total}>Totale: <span>{this.state.total} €</span></div>
+                            <button className={style.agree} onClick={this.handlePurchase}>Conferma Ordine</button></> :
+                              <div className={style.noProd}>Nessun articolo nel carrello</div>
+                            }
+                            <ul className={style.cartList}>
+                            {this.state.prods}
+                           </ul>
+                            
+                         </>
+                       }
+                   </div>}
+            
+                    <ProductList onChange={this.handleOther} admin={false}/>
+                      
+                  
+               </div>
+                      <div className={style.orderStatus}>
+                        {this.state.orderOpened &&
+                         <OrderBox order={this.state.order} user={JSON.parse(sessionStorage.getItem('utente')).details.username}/>}
+                        </div>
             </div>
         )
-    }
+    }//
 }
