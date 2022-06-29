@@ -3,6 +3,7 @@ import Services from "../Services/services";
 import Header from "../Components/Header";
 import ProductList from "../Components/ProductList";
 import Form from '../Components/Form'
+import style from '../Styles/admin.module.css'
 
 
 
@@ -44,11 +45,12 @@ export default class Admin extends React.Component{
 
 
      handleOther(prod) {
-        if(prod.source.innerHTML==='Aggiorna'){
+        if(prod.source.innerHTML==="aggiorna"){
             this.setState({
                 showUpdate:true,
                 formUpdate: <Form product={prod} hide={this.handleHide1} upd={true}/>
-            })
+            });
+          document.getElementById("change").style.width="60vw"
         }else{
             prod.source.parentNode.parentNode.remove()
             Services.deleteProduct(prod._id)
@@ -60,6 +62,7 @@ export default class Admin extends React.Component{
             showUpdate:false,
 
         })
+        document.getElementById("change").style.width="100vw"
         }
 
     handleHide2(){
@@ -67,6 +70,7 @@ export default class Admin extends React.Component{
             showCreate:false,
 
         })
+        document.getElementById("change").style.width="100vw"
     }
 
 
@@ -83,7 +87,7 @@ export default class Admin extends React.Component{
             showCreate:true,
             formCreate:<Form product={prod} hide={this.handleHide2} upd={false}/>
         })
-
+        document.getElementById("change").style.width="60vw"
         }
 
 
@@ -93,18 +97,20 @@ export default class Admin extends React.Component{
 
     render(){
         return(
-            <div>
+           <div>
                 {sessionStorage.length === 0 ? <></> :
                     <Header username={JSON.parse(sessionStorage.getItem('utente')).details.username}
                             isAdmin={JSON.parse(sessionStorage.getItem('utente')).isAdmin}
                             isChef={JSON.parse(sessionStorage.getItem('utente')).isChef}/>}
-                <ProductList onChange={this.handleOther} admin={true}/>
-                <button onClick={this.handleClick}>Aggiungi Prodotto</button>
-                <aside>
+               <div id="change" className={style.main}><ProductList onChange={this.handleOther} admin={true}/></div>
+                <button className={style.addProd} onClick={this.handleClick}>Aggiungi Prodotto</button>
+                <div className={style.formProduct}>
                     {this.state.showUpdate && this.state.formUpdate}
                     {this.state.showCreate && this.state.formCreate}
-                </aside>
-            </div>
+                </div>
+                    
+           </div>    
+           
         )
     }
 }

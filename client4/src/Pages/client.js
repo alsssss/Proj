@@ -102,7 +102,7 @@ export default class Client extends React.Component {
         cArr.push(c);
         c++;
         const lastPrice = arr.slice(-1)[0].price
-        vett.push(<div id={f}><Product prod={arr.slice(-1)[0]} showDisp={false}/><button onClick={this.handleDelete}>X</button></div>)
+        vett.push(<div id={f}><Product prod={arr.slice(-1)[0]} showDisp={false}/><button className={style.delButt} onClick={this.handleDelete}>X</button></div>)
         this.setState({
             prods:vett
         })

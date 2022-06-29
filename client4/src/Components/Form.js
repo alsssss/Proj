@@ -1,5 +1,6 @@
 import React from 'react';
 import Services from "../Services/services";
+import style from '../Styles/formProd.module.css'
 
 
 
@@ -38,7 +39,8 @@ export default class Form extends React.Component {
                     window.location.reload();
                 })
                 .catch(e => console.log(e))
-        }else{Services.createProduct(this.state)
+        }else{
+            Services.createProduct(this.state)
             .then(() =>{
                 window.location.reload();
             })
@@ -52,58 +54,59 @@ export default class Form extends React.Component {
     render() {
         return (
             <>
-                <button onClick={this.handleClick}>X</button>
+                
+                <button className={style.close} onClick={this.handleClick}>X</button>
                 <form onSubmit={this.handleSubmit}>
-                    <div >
-                        <label htmlFor='title'>Nome prodotto: </label>
+                    <div className={style.name} >
+                        <label htmlFor='title'>Nome prodotto </label>
                         <br/>
-                        <input  placeholder="Nome prodotto" type="text" required
+                        <input className={style.nIn} placeholder="Nome prodotto" type="text" required
                                 onChange={this.handleChange} value={this.state.title} name="title"/>
                     </div>
                     <br/>
-                    <div>
-                        <label htmlFor='ingredients'> Ingredienti: </label>
+                    <div className={style.ing}>
+                        <label htmlFor='ingredients'> Ingredienti </label>
                         <br/>
-                        <textarea  placeholder="Ingredienti"  required onChange={this.handleChange}  id="ingredients" name='ingredients'>{this.state.ingredients}</textarea>
+                        <textarea className={style.iIn} placeholder="Ingredienti"  required onChange={this.handleChange}  id="ingredients" name='ingredients'>{this.state.ingredients}</textarea>
                     </div>
                     <br/>
-                    <div>
-                        <label htmlFor='description'>Descrizione: </label>
+                    <div className={style.desc}>
+                        <label htmlFor='description'>Descrizione</label>
                         <br/>
-                        <textarea placeholder="Descrizione"  required onChange={this.handleChange} id='desc' name="desc" maxlength='30'>{this.state.desc}</textarea>
+                        <textarea className={style.dIn} placeholder="Descrizione"  required onChange={this.handleChange} id='desc' name="desc" maxLength='30'>{this.state.desc}</textarea>
                     </div>
                     <br/>
-                    <div>
-                        <label htmlFor='photo'>Url foto: </label>
+                    <div className={style.urlPh}>
+                        <label htmlFor='photo'>Url foto</label>
                         <br/>
-                        <input placeholder="Foto" type="text"
+                        <input className={style.phIn} placeholder="Foto" type="text"
                                onChange={this.handleChange} value={this.state.photo} name="photo"/>
                     </div>
                     <br/>
-                    <div>
-                        <label htmlFor='price'>Prezzo: </label>
+                    <div className={style.price}>
+                        <label htmlFor='price'>Prezzo </label>
                         <br/>
-                        <input placeholder="Prezzo" type="number" required
+                        <input className={style.pIn} placeholder="Prezzo" type="number" required
                                onChange={this.handleChange} value={this.state.price} name="price"/>
                     </div>
                     <br/>
-                    <div>
-                        <label htmlFor='disp'>Disponibile? </label>
+                    <div className={style.isIn}>
+                        <label className={style.disp} htmlFor='disp'>Disponibile? </label>
                         <br/>
                         {this.props.product.disp ? <>
-                            <input  type="radio" required id='si'
-                                   onChange={this.handleChange} value={true} name="disp" checked/>
-                            <input  type="radio" required id='no'
-                                    onChange={this.handleChange} value={false} name="disp" /> </> :
+                            <input className={style.radioYes} type="radio" required id='si'
+                                   onChange={this.handleChange} value={true} name="disp" checked/>Si
+                            <input className={style.radioNo} type="radio" required id='no'
+                                    onChange={this.handleChange} value={false} name="disp" />No </> :
                             <>
-                                <input  type="radio" required id='si'
-                                        onChange={this.handleChange} value={true} name="disp"/>
-                                <input  type="radio" required id='no'
-                                        onChange={this.handleChange} value={false} name="disp" checked /> </>}
+                                <input  className={style.radioYes}  type="radio" required id='si'
+                                        onChange={this.handleChange} value={true} name="disp"/>Si
+                                <input className={style.radioNo}  type="radio" required id='no'
+                                        onChange={this.handleChange} value={false} name="disp" checked />No</>}
 
                     </div>
-                    <div>
-                        <input type="submit" value="Submit" />
+                    <div >
+                        <input id="pulse" className={style.submit} type="submit" value="Aggiorna"  />
                     </div>
                 </form>
             </>
